@@ -1,21 +1,28 @@
+// Function to pair up two lists, calculate distances, and return the total distance
+fun pairAndCalculate(left: List<Int>, right: List<Int>): Int {
+    val sortedLeft = left.sorted()
+    val sortedRight = right.sorted()
+
+    // Ensure both lists have the same size
+    require(sortedLeft.size == sortedRight.size) { "Both lists must have the same size." }
+
+    // Calculate the total distance by pairing up elements in sorted order
+    return sortedLeft.zip(sortedRight) { a, b -> kotlin.math.abs(a - b) }.sum()
+}
+
+
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
+    val inputFile = "Day01" // Input file path
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
+    // Read the input file
+    val input = readFile(inputFile)
 
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
+    // Parse two columns into two lists (left and right)
+    val (leftList, rightList) = parseColumns(input)
 
-    // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    // Calculate the total distance by pairing up the lists
+    val totalDistance = pairAndCalculate(leftList, rightList)
 
-    // Read the input from the `src/Day01.txt` file.
-    val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+    // Print the result
+    println("Total Distance: $totalDistance")
 }
