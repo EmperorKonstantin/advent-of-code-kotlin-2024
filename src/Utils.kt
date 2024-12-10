@@ -28,11 +28,12 @@ fun readFile(file: String): List<String> {
 }
 
 // Function to parse two lists (left and right) from the input file
-fun parseColumns(input: List<String>): Pair<List<Int>, List<Int>> {
+fun parseColumns(input: List<String>): Pair<List<Long>, List<Long>> {
     val (leftList, rightList) = input.map { line ->
-        val first = line.substringBefore(" ").trim().toInt()
-        val second = line.substringAfter(" ").trim().toInt()
-        first to second
+        line.split(Regex("\\s+")).let {
+            require(it.size == 2)
+            it[0].toLong() to it[1].toLong()
+        }
     }.unzip()
 
     return Pair(leftList, rightList)

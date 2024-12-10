@@ -1,5 +1,5 @@
 // Function to pair up two lists, calculate distances, and return the total distance
-fun pairAndCalculate(left: List<Int>, right: List<Int>): Int {
+fun pairAndCalculate(left: List<Long>, right: List<Long>): Long {
     val sortedLeft = left.sorted()
     val sortedRight = right.sorted()
 
@@ -11,7 +11,7 @@ fun pairAndCalculate(left: List<Int>, right: List<Int>): Int {
 }
 
 // Function to calculate similarity between two lists
-fun calculateSimilarity(left: List<Int>, right: List<Int>): Int {
+fun calculateSimilarity(left: List<Long>, right: List<Long>): Long {
     // Count occurrences of each number in the right list
     val rightCounts = right.groupingBy { it }.eachCount()
 
