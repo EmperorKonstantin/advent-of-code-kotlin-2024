@@ -10,6 +10,14 @@ fun pairAndCalculate(left: List<Int>, right: List<Int>): Int {
     return sortedLeft.zip(sortedRight) { a, b -> kotlin.math.abs(a - b) }.sum()
 }
 
+// Function to calculate similarity between two lists
+fun calculateSimilarity(left: List<Int>, right: List<Int>): Int {
+    // Count occurrences of each number in the right list
+    val rightCounts = right.groupingBy { it }.eachCount()
+
+    // Calculate total similarity score
+    return left.sumOf { num -> num * (rightCounts[num] ?: 0) }
+}
 
 fun main() {
     val inputFile = "Day01" // Input file path
@@ -25,4 +33,10 @@ fun main() {
 
     // Print the result
     println("Total Distance: $totalDistance")
+
+    // Calculate similarity score
+    val similarityScore = calculateSimilarity(leftList, rightList)
+
+    // Print the result
+    println("Total Similarity Score: $similarityScore")
 }
